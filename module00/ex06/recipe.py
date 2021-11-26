@@ -35,19 +35,58 @@ def add_recipe(cookbook):
             break
 
 def delete_recipe(cookbook):
-    print('test2')
+    if (len(cookbook) == 0):
+        print('ERROR no recipe to delete\n\nABORT\n')
+        return
+    while True:
+        print('Please select one of those recipe to delete')
+        for key in cookbook:
+            print(key)
+        s = input()
+        if cookbook.get(s):
+            break
+        print('\nWrong recipe name\n')
+    while True:
+        confirmation = input('Are you sure to want to delete {}\'s recipe ? (Y/N)'.format(s))
+        if confirmation == 'Y':
+            break
+        elif confirmation == 'N':
+            print('\nDelete has been canceled\n')
+            return
+        print('Enter Y for Yes and N for No')
+    cookbook.pop(s)
+    print('{}\'s recipe has been successfully deleted\n'.format(s))
 
 def print_recipe(cookbook):
-    print('test3')
+    if (len(cookbook) == 0):
+        print('ERROR no recipe to print\n\nABORT\n')
+        return
+    while True:
+        print('Please select one of those recipe to print')
+        for key in cookbook:
+            print(key)
+        s = input('\n')
+        if cookbook.get(s):
+            break
+        print('\nWrong recipe name\n')
+    print('Guide line for your {}'.format(s))
+    print('Ingredients list: {}\nTo be eaten for {}\nTakes {} minutes of preparation\n'.format(cookbook[s]['ingredients'], cookbook[s]['meal'], cookbook[s]['prep_time']))
 
 def print_cookbook(cookbook):
-    print('test4')
+    if (len(cookbook) == 0):
+        print('ERROR no recipe to print\n\nABORT\n')
+        return
+    print('\nThe cookbook have {} recipes:\n'.format(len(cookbook)))
+    for key in cookbook:
+        print(key)
+    print('\n')
 
 def quit(cookbook):
     print('\nCookbook closed.')
     exit(0)
 
 if __name__ == "__main__":
+    #Args aren't like the subject``
     check = -1
     cookbook = {'cake' : {'ingredients' : ['flour', 'sugar', 'eggs'], 'meal' : 'dessert', 'prep_time' : 60},
                 'sandwich' : {'ingredients' : ['ham', 'bread', 'cheese', 'tomatoes'], 'meal' : 'lunch', 'prep_time' : 10},
